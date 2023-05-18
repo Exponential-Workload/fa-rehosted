@@ -62,7 +62,7 @@ jobs:
       - name: Cleanup - Remove node_modules
         run: rm -rf node_modules site/node_modules
       - name: Util - Zip both directories
-        run: zip build.zip .
+        run: zip build.zip ./*
       - name: Deploy - Setup Pages
         uses: actions/configure-pages@v3
       - name: Deploy - Upload artifact
