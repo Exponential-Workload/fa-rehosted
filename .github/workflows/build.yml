@@ -52,7 +52,7 @@ jobs:
       - name: Build - Copy output
         run: |
           cd site
-          cp build/* ../
+          cp -r build/* ../
       - name: Build - PPTR
         run: pnpm build:pptr
       - name: Build - Replace Links
