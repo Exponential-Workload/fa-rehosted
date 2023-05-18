@@ -1,14 +1,16 @@
 import * as fs from 'fs-extra';
 import path from 'path';
 
-const prefix = 'https://exponential-workload.github.io/fa-rehosted/new/';
+const prefix = 'exponential-workload.github.io/fa-rehosted/new/';
 const replace: Record<string, string> = {
   '32397475': '0',
   'eb936bb355': '',
   // 'https://ka-f.fontawesome.com': `${prefix}/ka-f.fontawesome.com`,
   // 'https://kit.fontawesome.com': `${prefix}/kit.fontawesome.com`,
-  'https://': prefix,
-  'http://': prefix,
+  'https://': `https://${prefix}`,
+  'http://': `http://${prefix}`,
+  'https:\\/\\/': `https:\\/\\/${prefix.replace('/', '\\/')}`,
+  'http:\\/\\/': `http:\\/\\/${prefix.replace('/', '\\/')}`,
 }
 const replaceKeys = Object.keys(replace);
 const replaceValues = Object.values(replace);
