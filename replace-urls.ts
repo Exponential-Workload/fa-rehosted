@@ -1,6 +1,12 @@
 import * as fs from 'fs-extra';
 import path from 'path';
 
+const whitelist = [
+  'woff2',
+  'ttf',
+  'woff'
+]
+
 const prefix = 'exponential-workload.github.io/fa-rehosted/new/';
 const replace: Record<string, string> = {
   '32397475': '0',
@@ -34,5 +40,8 @@ const files = recursiveReaddirSync('files');
 for (const file of files) {
   const np = path.resolve('new', file.replace('files', '.'))
   fs.ensureFileSync(np)
-  fs.writeFileSync(np, replaceAll(fs.readFileSync(file, 'utf-8')));
+  if (!whitelist.includes(np.split('.').pop()!))
+    fs.writeFileSync(np, replaceAll(fs.readFileSync(file, 'utf-8')));
+  else
+    fs.copyFileSync(file, np);
 }
