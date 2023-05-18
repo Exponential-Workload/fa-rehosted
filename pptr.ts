@@ -18,6 +18,7 @@ const urls = [
   page.on('request', async interceptedRequest => {
     if (interceptedRequest.isInterceptResolutionHandled()) return;
     const url = interceptedRequest.url();
+    if (url.startsWith('data:')) return interceptedRequest.continue();
     const urlNoHttp = url.replace(/https?:\/\//, '')
     const urlStripped = shouldStripQuery ? stripQuery(urlNoHttp) : urlNoHttp;
     const filepath = path.join(__dirname, 'files', urlStripped.endsWith('/') ? `${urlStripped}/index.html` : urlStripped);
