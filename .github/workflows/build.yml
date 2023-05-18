@@ -41,16 +41,28 @@ jobs:
           node-version: "20"
       - name: Setup - Install dependencies
         run: pnpm install
+      - name: Setup - Install Site dependencies
+        run: |
+          cd site
+          pnpm i
+      - name: Build - Build Site
+        run: |
+          cd site
+          pnpm build
+      - name: Build - Copy output
+        run: |
+          cd site
+          cp build/* ../
       - name: Build - PPTR
         run: pnpm build:pptr
       - name: Build - Replace Links
         run: pnpm build:rpl
       - name: Build - Copy file to root dir
         run: pnpm build:cpy
-      - name: Util - Zip both directories
-        run: zip build.zip files new pptr.ts replace-urls.ts
       - name: Cleanup - Remove node_modules
-        run: rm -rf node_modules
+        run: rm -rf node_modules site/node_modules
+      - name: Util - Zip both directories
+        run: zip build.zip .
       - name: Deploy - Setup Pages
         uses: actions/configure-pages@v3
       - name: Deploy - Upload artifact
