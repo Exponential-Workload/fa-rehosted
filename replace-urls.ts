@@ -9,8 +9,8 @@ const replace: Record<string, string> = {
   // 'https://kit.fontawesome.com': `${prefix}/kit.fontawesome.com`,
   'https://': `https://${prefix}`,
   'http://': `http://${prefix}`,
-  'https:\\/\\/': `https:\\/\\/${prefix.replace('/', '\\/')}`,
-  'http:\\/\\/': `http:\\/\\/${prefix.replace('/', '\\/')}`,
+  'https:\\/\\/': `https:\\/\\/${prefix.split('/').join('\\/')}`,
+  'http:\\/\\/': `http:\\/\\/${prefix.split('/').join('\\/')}`,
 }
 const replaceKeys = Object.keys(replace);
 const replaceValues = Object.values(replace);
