@@ -6,7 +6,7 @@ const stripQuery = (url: string) => url.replace(/\?.*$/, '');
 const shouldStripQuery = true;
 
 const urls = [
-  'https://exponential-workload.github.io/fa-rehosted/load-fa-from-origin/'
+  'https://fa.astolfo.gay/load-fa-from-origin/'
 ];
 
 (async () => {

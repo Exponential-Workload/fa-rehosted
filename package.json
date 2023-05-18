@@ -10,6 +10,8 @@
   },
   "scripts": {
     "build:pptr": "ts-node pptr.ts",
-    "build:rpl": "ts-node replace-urls.ts"
+    "build:rpl": "ts-node replace-urls.ts",
+    "build:cpy": "ts-node copy-file.ts",
+    "build": "npm run build:pptr && npm run build:rpl && npm run build:cpy"
   }
 }

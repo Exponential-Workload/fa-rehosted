@@ -7,16 +7,17 @@ const whitelist = [
   'woff'
 ]
 
-const prefix = 'exponential-workload.github.io/fa-rehosted/new/';
+const prefixIsFullSite = true // relative urls if false; break shit
+const prefix = process.env.PREFIX ?? 'fa.astolfo.gay/new/';
 const replace: Record<string, string> = {
   '32397475': '0',
   'eb936bb355': '',
   // 'https://ka-f.fontawesome.com': `${prefix}/ka-f.fontawesome.com`,
   // 'https://kit.fontawesome.com': `${prefix}/kit.fontawesome.com`,
-  'https://': `https://${prefix}`,
-  'http://': `http://${prefix}`,
-  'https:\\/\\/': `https:\\/\\/${prefix.split('/').join('\\/')}`,
-  'http:\\/\\/': `http:\\/\\/${prefix.split('/').join('\\/')}`,
+  'https://': prefixIsFullSite ? `https://${prefix}` : `${prefix}`,
+  'http://': prefixIsFullSite ? `http://${prefix}` : `${prefix}`,
+  'https:\\/\\/': `${prefixIsFullSite ? 'https:\\/\\/' : ''}${prefix.split('/').join('\\/')}`,
+  'http:\\/\\/': `${prefixIsFullSite ? 'http:\\/\\/' : ''}${prefix.split('/').join('\\/')}`,
 }
 const replaceKeys = Object.keys(replace);
 const replaceValues = Object.values(replace);

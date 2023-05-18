@@ -45,6 +45,8 @@ jobs:
         run: pnpm build:pptr
       - name: Build - Replace Links
         run: pnpm build:rpl
+      - name: Build - Copy file to root dir
+        run: pnpm build:cpy
       - name: Util - Zip both directories
         run: zip build.zip files new pptr.ts replace-urls.ts
       - name: Cleanup - Remove node_modules
